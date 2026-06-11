@@ -14,7 +14,7 @@ CREATE TABLE tenants (
 );
 
 CREATE TABLE staff (
-                       id            UUID           PRIMARY KEY DEFAULT gen_random_uuid(),
+                       id VARCHAR(255) PRIMARY KEY DEFAULT gen_random_uuid()::text,
                        tenant_id     VARCHAR(100)   NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
                        name          VARCHAR(255)   NOT NULL,
                        email         VARCHAR(255)   NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE staff (
 );
 
 CREATE TABLE menu_items (
-                            id                UUID           PRIMARY KEY DEFAULT gen_random_uuid(),
+                            id VARCHAR(255) PRIMARY KEY DEFAULT gen_random_uuid()::text,
                             tenant_id         VARCHAR(100)   NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
                             name              VARCHAR(255)   NOT NULL,
                             description       TEXT,
@@ -42,22 +42,22 @@ CREATE TABLE menu_items (
 );
 
 CREATE TABLE orders (
-                        id             UUID           PRIMARY KEY DEFAULT gen_random_uuid(),
+                        id VARCHAR(255) PRIMARY KEY DEFAULT gen_random_uuid()::text,
                         tenant_id      VARCHAR(100)   NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
                         table_number   VARCHAR(20),
                         customer_name  VARCHAR(255),
                         status         VARCHAR(50)    NOT NULL DEFAULT 'PENDING',
                         total_amount   NUMERIC(10,2)  NOT NULL DEFAULT 0,
-                        staff_id       UUID           REFERENCES staff(id) ON DELETE SET NULL,
+                        staff_id       VARCHAR(255)           REFERENCES staff(id) ON DELETE SET NULL,
                         notes          TEXT,
                         created_at     TIMESTAMPTZ    NOT NULL DEFAULT NOW(),
                         updated_at     TIMESTAMPTZ    NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE order_items (
-                             id            UUID           PRIMARY KEY DEFAULT gen_random_uuid(),
-                             order_id      UUID           NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
-                             menu_item_id  UUID           NOT NULL REFERENCES menu_items(id),
+                             id VARCHAR(255) PRIMARY KEY DEFAULT gen_random_uuid()::text,
+                             order_id      VARCHAR(255)           NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+                             menu_item_id  VARCHAR(255)           NOT NULL REFERENCES menu_items(id),
                              quantity      INT            NOT NULL CHECK (quantity > 0),
                              unit_price    NUMERIC(10,2)  NOT NULL,
                              subtotal      NUMERIC(10,2)  NOT NULL

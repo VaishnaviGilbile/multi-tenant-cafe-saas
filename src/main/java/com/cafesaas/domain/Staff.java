@@ -29,7 +29,7 @@ public class Staff extends TenantAwareEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private String id;
 
     @Column(nullable = false)
     private String name;

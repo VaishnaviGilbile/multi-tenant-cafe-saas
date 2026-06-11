@@ -23,7 +23,7 @@ public class Order extends TenantAwareEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private String id;
 
     @Column(name = "table_number", length = 20)
     private String tableNumber;
@@ -39,7 +39,7 @@ public class Order extends TenantAwareEntity {
     private BigDecimal totalAmount;
 
     @Column(name = "staff_id")
-    private UUID staffId;
+    private String staffId;
 
     @Column(columnDefinition = "TEXT")
     private String notes;
