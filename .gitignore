@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Mac
+.DS_Store
+**/.DS_Store
+__MACOSX
+
+# UI
+ui/node_modules/
+ui/build/
