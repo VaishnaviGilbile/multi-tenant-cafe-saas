@@ -3,6 +3,8 @@ package com.cafesaas.domain;
 
 import com.cafesaas.security.Role;
 import com.cafesaas.tenant.TenantAwareEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +27,7 @@ import java.util.UUID;
         }
 )
 @Getter @Setter @Builder @NoArgsConstructor @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Staff extends TenantAwareEntity {
 
     @Id
@@ -38,6 +41,7 @@ public class Staff extends TenantAwareEntity {
     private String email;
 
     @Column(name = "password_hash", nullable = false)
+    @JsonIgnore
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)

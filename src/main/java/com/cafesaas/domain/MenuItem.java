@@ -2,6 +2,7 @@
 package com.cafesaas.domain;
 
 import com.cafesaas.tenant.TenantAwareEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ import java.util.UUID;
         }
 )
 @Getter @Setter @Builder @NoArgsConstructor @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class MenuItem extends TenantAwareEntity {
 
     @Id
