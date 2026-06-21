@@ -40,3 +40,8 @@ __MACOSX
 # UI
 ui/node_modules/
 ui/build/
+
+
+.env
+.env.local
+*.env
