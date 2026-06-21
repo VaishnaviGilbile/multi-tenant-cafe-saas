@@ -34,7 +34,7 @@ public class SecurityConfig {
                     // In production, replace with your actual frontend URL
                     config.setAllowedOrigins(List.of(
                             "http://localhost:3000",
-                            "${FRONTEND_URL:http://localhost:3000}"
+                            "https://multi-tenant-cafe-saas.netlify.app"
                     ));
                     config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
                     config.setAllowedHeaders(List.of("*"));
