@@ -22,7 +22,7 @@ public class TenantFilter implements Filter {
     public static final String TENANT_HEADER = "X-Tenant-ID";
 
     private static final String[] PUBLIC_PATHS = {
-            "/actuator/health",
+            "/actuator",
             "/api/auth/register-tenant"
     };
 

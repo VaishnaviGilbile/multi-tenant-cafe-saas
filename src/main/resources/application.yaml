@@ -39,7 +39,7 @@ management:
     health:
       show-details: always
 server:
-  port: 8082
+  port: ${PORT:8082}
 
 ---
 spring:

@@ -43,7 +43,7 @@ public class SecurityConfig {
                 }))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/actuator/health",
+                                "/actuator/**",
                                 "/api/auth/**"
                         ).permitAll()
                         .requestMatchers("/api/admin/**").hasRole("SUPER_ADMIN")
