@@ -28,6 +28,16 @@ app:
     secret: ${JWT_SECRET:local-dev-secret-minimum-256-bits-long-replace-in-prod}
     expiration-ms: 86400000    # 24 hours
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+  endpoint:
+    health:
+      show-details: always
 server:
   port: 8082
 
