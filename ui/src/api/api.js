@@ -15,6 +15,19 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+
+api.interceptors.response.use(
+    (response) => response,  // success — pass through
+    (error) => {
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        // Clear stale auth and redirect to login
+        localStorage.removeItem("cafe_auth");
+        window.location.href = "/login";
+      }
+      return Promise.reject(error);
+    }
+);
+
 // Auth
 export const loginApi = (tenantId, email, password) =>
   api.post("/api/auth/login", { email, password }, {

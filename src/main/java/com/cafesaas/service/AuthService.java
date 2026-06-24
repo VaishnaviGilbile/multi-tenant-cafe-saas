@@ -72,6 +72,10 @@ public class AuthService {
      */
     @Transactional(readOnly = true)
     public LoginResponse login(LoginRequest req) {
+        String tenantId = TenantContext.getCurrentTenant();
+        if (!tenantRepository.existsById(tenantId)) {
+            throw new BusinessException("Invalid credentials");
+        }
         Staff staff = staffRepository.findByEmail(req.email())
                 .orElseThrow(() -> new BusinessException("Invalid email or password"));
 
@@ -81,8 +85,6 @@ public class AuthService {
         if (!passwordEncoder.matches(req.password(), staff.getPasswordHash())) {
             throw new BusinessException("Invalid email or password");
         }
-
-        String tenantId = TenantContext.getCurrentTenant();
         String token = jwtService.generateToken(staff.getId().toString(), tenantId, staff.getRole());
         return new LoginResponse(token, staff.getId().toString(), tenantId, staff.getRole().name());
     }
